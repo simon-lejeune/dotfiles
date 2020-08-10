@@ -1,0 +1,6 @@
+--ignore-file=is:tags
+--ignore-file=ext:po
+--ignore-file=ext:pot
+--ignore-dir=.direnv
+--type-add
+scss=.scss

@@ -1,0 +1,2 @@
+set ignore-case = true
+set main-options = -n 1000
