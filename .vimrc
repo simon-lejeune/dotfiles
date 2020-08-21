@@ -8,7 +8,7 @@ endif
 call plug#begin('~/.vim/plugged')
 Plug 'tpope/vim-vinegar'
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'nixprime/cpsm'
+"Plug 'nixprime/cpsm'
 Plug 'mhinz/vim-grepper'
 Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -17,8 +17,8 @@ Plug 'ap/vim-buftabline'
 call plug#end()
 "}}}
 
-let g:python_host_prog = '/Users/odoo/.vimvenv/python2/.direnv/python-2.7.16/bin/python2.7'
-let g:python3_host_prog = '/Users/odoo/.vimvenv/python3/.direnv/python-3.7.6/bin/python3.7'
+"let g:python_host_prog = '/Users/odoo/.vimvenv/python2/.direnv/python-2.7.16/bin/python2.7'
+let g:python3_host_prog = '/Users/simon/.vimenv/neovim/bin/python3'
 
 let g:netrw_fastbrowse = 0
 
@@ -115,6 +115,10 @@ autocmd BufReadPost *
 "}}}
 
 " coc options {{{
+" :CocInstall coc-python
+" :CocInstall coc-tsserver
+" :CocInstall coc-vetur
+" :CocInstall coc-json
 set cmdheight=2                          " Better display for messages
 set updatetime=300                       " You will have bad experience for diagnostic messages when it's default 4000.
 set shortmess+=c                         " don't give |ins-completion-menu| messages.
@@ -204,7 +208,7 @@ if executable('rg')
   let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
   let g:ctrlp_use_caching = 0
 endif
-let g:ctrlp_match_func = {'match': 'cpsm#CtrlPMatch'}
-let g:cpsm_match_empty_query = 0
+"let g:ctrlp_match_func = {'match': 'cpsm#CtrlPMatch'}
+"let g:cpsm_match_empty_query = 0
 "}}}
 
