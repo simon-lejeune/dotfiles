@@ -1,9 +1,0 @@
-[MASTER]
-disable=
-    C0111, # missing-module-docstring
-    C0301, # line too long
-    W0212, # access to a protected member of a client class
-    C0302, # too many lines in module
-
-init-hook="import sys; sys.path.append("/Users/odoo/odoo_workspace/base/odoo")"
-
