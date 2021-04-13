@@ -1,7 +1,7 @@
 # This is Git's per-user configuration file.
 [user]
 	name = Simon Lejeune 
-	email = sle@openerp.com
+	email = lejeunesimon.91@gmail.com
 [core]
 	editor = /usr/local/bin/nvim
 #[rerere]
