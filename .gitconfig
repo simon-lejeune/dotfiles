@@ -3,7 +3,7 @@
 	name = Simon Lejeune 
 	email = lejeunesimon.91@gmail.com
 [core]
-	editor = /usr/local/bin/nvim
+	editor = /opt/homebrew/bin/nvim
 #[rerere]
 #	enabled = true
 [merge]
