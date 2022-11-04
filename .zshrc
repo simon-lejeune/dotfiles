@@ -52,3 +52,6 @@ alias util='kubectl get nodes --no-headers | awk '\''{print $1}'\'' | xargs -I {
 alias cpualloc='util | grep % | awk '\''{print $1}'\'' | awk '\''{ sum += $1 } END { if (NR > 0) { print sum/(NR*20), "%\n" } }'\'''
 alias memalloc='util | grep % | awk '\''{print $5}'\'' | awk '\''{ sum += $1 } END { if (NR > 0) { print sum/(NR*75), "%\n" } }'\'''
 source <(velero completion zsh)
+
+# flutter
+export PATH="$PATH:/Users/simon/workspace/flutter/bin"
