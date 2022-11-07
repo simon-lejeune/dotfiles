@@ -1,6 +1,6 @@
 require("mason").setup()
 require("mason-lspconfig").setup({
-    ensure_installed = { "sumneko_lua", "pyright" , "tsserver", "tailwindcss"}
+    ensure_installed = { "sumneko_lua", "pyright" , "tsserver", "tailwindcss", "prismals"}
 })
 
 -- Mappings.
@@ -42,7 +42,7 @@ local lsp_flags = {
 }
 
 
-local servers = {"sumneko_lua", "tsserver", "pyright", "tailwindcss"}
+local servers = {"sumneko_lua", "tsserver", "pyright", "tailwindcss", "prismals"}
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 for _, lsp in pairs(servers) do
   require("lspconfig")[lsp].setup {
