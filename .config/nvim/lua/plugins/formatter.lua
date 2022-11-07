@@ -10,7 +10,7 @@ local djhtml = function()
   return {
     exe = "djhtml",
     args = {"-t", "2"},
-    stdin = true,
+    stdin = true
   }
 end
 
@@ -27,15 +27,14 @@ fmt.setup(
   {
     logging = true,
     log_level = vim.log.levels.WARN,
-
     filetype = {
       python = {black},
       lua = {luafmt},
       htmldjango = {require("formatter.filetypes.javascript").prettier},
       html = {require("formatter.filetypes.javascript").prettier},
-      javascript={require("formatter.filetypes.javascript").prettier},
+      javascript = {require("formatter.filetypes.javascript").prettier},
+      typescript = {require("formatter.filetypes.typescript").prettier},
+      typescriptreact = {require("formatter.filetypes.typescript").prettier}
     }
   }
 )
---       #htmldjango = {djhtml,require("formatter.filetypes.javascript").prettier},
-
