@@ -1,9 +1,10 @@
 # This is Git's per-user configuration file.
 [user]
-	name = Simon Lejeune 
+	name = Simon Lejeune
 	email = lejeunesimon.91@gmail.com
 [core]
 	editor = /opt/homebrew/bin/nvim
+	excludesfile = ~/.gitignore_global
 #[rerere]
 #	enabled = true
 [merge]
