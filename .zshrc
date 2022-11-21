@@ -22,9 +22,9 @@ export EDITOR=nvim
 
 # nvm
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" --no-use  # This lazy loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-export PATH="`yarn global bin`:$PATH"
+#export PATH="`yarn global bin`:$PATH"
 export NODE_VERSIONS="${NVM_DIR}/versions/node"
 export NODE_VERSION_PREFIX="v"
 
@@ -71,3 +71,4 @@ alias memalloc='util | grep % | awk '\''{print $5}'\'' | awk '\''{ sum += $1 } E
 export PATH="$PATH:/Users/simon/workspace/flutter/bin"
 
 # zprof
+# time  zsh -i -c exit
