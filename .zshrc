@@ -1,3 +1,5 @@
+# zmodload zsh/zprof
+
 disable r
 bindkey "[D" backward-word       # alt - left
 bindkey "[C" forward-word        # alt - right
@@ -49,11 +51,23 @@ export AGKOZAK_CUSTOM_SYMBOLS=( '⇣⇡' '⇣' '⇡' '+' 'x' '!' '>' '?' 'S')
 export PYTHONDONTWRITEBYTECODE=True
 
 # kubernetes
-[[ /opt/homebrew/bin/kubectl ]] && source <(kubectl completion zsh)
+# lazyload kubectl completion 
+# https://github.com/kubernetes/kubernetes/issues/59078
+# https://frederic-hemberger.de/notes/shell/speed-up-initial-zsh-startup-with-lazy-loading/
+if [ $commands[kubectl] ]; then
+  kubectl() {
+    unfunction "$0"
+    source <(kubectl completion zsh)
+    $0 "$@"
+  }
+fi
+
 alias util='kubectl get nodes --no-headers | awk '\''{print $1}'\'' | xargs -I {} sh -c '\''echo {} ; kubectl describe node {} -n bosa-prod | grep Allocated -A 5 | grep -ve Event -ve Allocated -ve percent -ve -- ; echo '\'''
 alias cpualloc='util | grep % | awk '\''{print $1}'\'' | awk '\''{ sum += $1 } END { if (NR > 0) { print sum/(NR*20), "%\n" } }'\'''
 alias memalloc='util | grep % | awk '\''{print $5}'\'' | awk '\''{ sum += $1 } END { if (NR > 0) { print sum/(NR*75), "%\n" } }'\'''
-source <(velero completion zsh)
+[[ /opt/homebrew/bin/velero ]] && source <(velero completion zsh)
 
 # flutter
 export PATH="$PATH:/Users/simon/workspace/flutter/bin"
+
+# zprof
