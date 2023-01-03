@@ -34,7 +34,8 @@ fmt.setup(
       html = {require("formatter.filetypes.javascript").prettier},
       javascript = {require("formatter.filetypes.javascript").prettier},
       typescript = {require("formatter.filetypes.typescript").prettier},
-      typescriptreact = {require("formatter.filetypes.typescript").prettier}
+      typescriptreact = {require("formatter.filetypes.typescript").prettier},
+      css = {require("formatter.filetypes.css").prettier}
     }
   }
 )
