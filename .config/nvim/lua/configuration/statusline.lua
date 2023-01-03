@@ -11,6 +11,7 @@ set statusline+=\    " Whitespace
 set statusline+=%l   " Current line
 set statusline+=/    " Separator
 set statusline+=%L   " Total lines
+set statusline+=\    " Whitespace
 set statusline+=%c   " column
 ]]
 )
