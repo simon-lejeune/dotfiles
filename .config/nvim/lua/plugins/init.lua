@@ -11,10 +11,17 @@ return require("packer").startup(
     use "wbthomason/packer.nvim"
     use "ap/vim-buftabline"
     use "ellisonleao/gruvbox.nvim"
-    use "tpope/vim-vinegar"
     use "tpope/vim-sleuth"
     use "tpope/vim-fugitive"
     use "tpope/vim-unimpaired"
+    use (
+      {
+        'nvim-tree/nvim-tree.lua',
+        config = function()
+          require("plugins.nvimtree")
+        end
+      }
+    )
     use(
       {
         "williamboman/mason.nvim",

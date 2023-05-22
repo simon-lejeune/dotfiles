@@ -57,3 +57,7 @@ vim.g.python3_host_prog = '/opt/homebrew/bin/python3'
 
 -- Set Space as the leader key
 vim.g.mapleader = ' '
+
+-- disable netrw, as per https://github.com/nvim-tree/nvim-tree.lua doc
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
