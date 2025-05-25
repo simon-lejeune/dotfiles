@@ -1,10 +1,9 @@
 require("mason").setup()
 require("mason-lspconfig").setup({
-    ensure_installed = { "lua_ls", "pyright" , "tsserver", "tailwindcss", "prismals"}
+  ensure_installed = { "lua_ls", "pyright" , "ts_ls", "tailwindcss" }
 })
 
 -- Mappings.
--- See `:help vim.diagnostic.*` for documentation on any of the below functions
 local opts = { noremap=true, silent=true }
 vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
@@ -34,20 +33,17 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
   vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
   vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
-  vim.keymap.set('n', '<space>f', vim.lsp.buf.formatting, bufopts)
+  vim.keymap.set('n', '<space>f', vim.lsp.buf.format, bufopts)
 end
-
-local lsp_flags = {
-  debounce_text_changes = 150,
-}
-
-
-local servers = {"lua_ls", "tsserver", "pyright", "tailwindcss", "prismals"}
-local capabilities = require('cmp_nvim_lsp').default_capabilities()
-for _, lsp in pairs(servers) do
-  require("lspconfig")[lsp].setup {
-    on_attach = on_attach,
-    flags = lsp_flags,
-    capabilities = capabilities
-  }
-end
+ 
+vim.api.nvim_create_autocmd('LspAttach', {
+  callback = function(ev)
+    local client = vim.lsp.get_client_by_id(ev.data.client_id)
+    if not client then
+      return
+    end
+    for bufnr, _ in pairs(client.attached_buffers) do
+      on_attach(client, bufnr)
+    end
+  end
+})

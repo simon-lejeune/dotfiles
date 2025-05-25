@@ -6,19 +6,23 @@ local black = function()
   }
 end
 
-local djhtml = function()
-  return {
-    exe = "djhtml",
-    args = {"-t", "2"},
-    stdin = true
-  }
-end
-
 local luafmt = function()
   return {
     exe = "luafmt",
     args = {"--indent-count", 2, "--stdin"},
     stdin = true
+  }
+end
+
+local util = require "formatter.util"
+local prettier = function()
+  return {
+      exe = "node_modules/prettier/bin/prettier.cjs",
+      args = {
+        "--stdin-filepath",
+        util.escape_path(util.get_current_buffer_file_path()),
+      },
+      stdin = true,
   }
 end
 
@@ -32,10 +36,11 @@ fmt.setup(
       lua = {luafmt},
       htmldjango = {require("formatter.filetypes.javascript").prettier},
       html = {require("formatter.filetypes.javascript").prettier},
-      javascript = {require("formatter.filetypes.javascript").prettier},
-      typescript = {require("formatter.filetypes.typescript").prettier},
-      typescriptreact = {require("formatter.filetypes.typescript").prettier},
-      css = {require("formatter.filetypes.css").prettier}
+      javascript = {prettier},
+      typescript = {prettier},
+      typescriptreact = {prettier},
+      css = {require("formatter.filetypes.css").prettier},
+      yaml = {prettier}
     }
   }
 )

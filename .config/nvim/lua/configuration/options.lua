@@ -53,7 +53,7 @@ vim.cmd('filetype plugin indent on')
 vim.g.vimsyn_embed = 'l'
 
 -- Use Python 3 for plugins
-vim.g.python3_host_prog = '/opt/homebrew/bin/python3'
+vim.g.python3_host_prog = '/Users/simon/.pyenv/versions/3.12.10'
 
 -- Set Space as the leader key
 vim.g.mapleader = ' '

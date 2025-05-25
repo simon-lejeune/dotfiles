@@ -9,7 +9,6 @@ end
 return require("packer").startup(
   function(use)
     use "wbthomason/packer.nvim"
-    use "ap/vim-buftabline"
     use "ellisonleao/gruvbox.nvim"
     use "tpope/vim-sleuth"
     use "tpope/vim-fugitive"
@@ -88,7 +87,6 @@ return require("packer").startup(
       config = "require('plugins.treesitter')",
       event = "BufRead"
     }
-
     if packer_bootstrap then
       require("packer").sync()
       vim.notify("restart nvim after the installation is done")
