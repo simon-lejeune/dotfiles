@@ -1,8 +1,8 @@
 # zmodload zsh/zprof
 
 disable r
-bindkey "[D" backward-word       # alt - left
-bindkey "[C" forward-word        # alt - right
+bindkey "\e[1;3D" backward-word       # alt - left
+bindkey "\e[1;3C" forward-word        # alt - right
 bindkey "^R" history-beginning-search-backward
 
 defaults write -g ApplePressAndHoldEnabled -bool false
@@ -28,8 +28,10 @@ export NVM_DIR="$HOME/.nvm"
 export NODE_VERSIONS="${NVM_DIR}/versions/node"
 export NODE_VERSION_PREFIX="v"
 
-# rbenv
-eval "$(rbenv init - zsh)"
+# pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - zsh)"
 
 # direnv
 eval "$(direnv hook zsh)"
@@ -50,25 +52,9 @@ export AGKOZAK_CUSTOM_SYMBOLS=( '⇣⇡' '⇣' '⇡' '+' 'x' '!' '>' '?' 'S')
 # python
 export PYTHONDONTWRITEBYTECODE=True
 
-# kubernetes
-# lazyload kubectl completion 
-# https://github.com/kubernetes/kubernetes/issues/59078
-# https://frederic-hemberger.de/notes/shell/speed-up-initial-zsh-startup-with-lazy-loading/
-if [ $commands[kubectl] ]; then
-  kubectl() {
-    unfunction "$0"
-    source <(kubectl completion zsh)
-    $0 "$@"
-  }
-fi
-
-alias util='kubectl get nodes --no-headers | awk '\''{print $1}'\'' | xargs -I {} sh -c '\''echo {} ; kubectl describe node {} -n bosa-prod | grep Allocated -A 5 | grep -ve Event -ve Allocated -ve percent -ve -- ; echo '\'''
-alias cpualloc='util | grep % | awk '\''{print $1}'\'' | awk '\''{ sum += $1 } END { if (NR > 0) { print sum/(NR*20), "%\n" } }'\'''
-alias memalloc='util | grep % | awk '\''{print $5}'\'' | awk '\''{ sum += $1 } END { if (NR > 0) { print sum/(NR*75), "%\n" } }'\'''
-[[ /opt/homebrew/bin/velero ]] && source <(velero completion zsh)
-
-# flutter
-export PATH="$PATH:/Users/simon/workspace/flutter/bin"
+# google cloud sdk
+source /Users/simon/workspace/google-cloud-sdk/path.zsh.inc
+source /Users/simon/workspace/google-cloud-sdk/completion.zsh.inc
 
 # zprof
 # time  zsh -i -c exit
